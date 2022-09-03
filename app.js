@@ -1,13 +1,17 @@
 const express = require('express');
 const path = require('path');
+var cookieParser = require('cookie-parser')
 const UserRouter = require('./router/userRouter')
 const PostRouter = require('./router/postRouter')
 
 const app = express()
+app.use(cookieParser())
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.get('/home', (req,res)=>{
+    // res.cookie('test','khai',{ expires:new Date(Date.now()+9000)})
+    console.log(req.cookies)
     res.sendFile(path.join(__dirname,'./home.html'))
 })
 app.get('/user/:id/changePass', (req,res)=>{

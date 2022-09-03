@@ -55,8 +55,15 @@ function renderListPost(skip,limit){
 }
 
 function renderListButton(total){
+    let limit = $('#limit').val();
+    let totalButton = Math.ceil(totalData / limit)
     $('.listButton').html('')
-    $('.next').attr('onclick', 'changePage(2)')
+    if(totalButton >= 2){
+        $('.next').attr('onclick', 'changePage(2)')
+    }else{
+        $('.next').attr('onclick', '')
+    }
+    $('.prev').attr('onclick', '')
     for(let i=1; i<=total; i++) {
         $('.listButton').append(`
             <button onclick="changePage(${i})">${i}</button>
@@ -96,7 +103,16 @@ function save(){
 function changePage(page){
     let limit = $('#limit').val();
     let skip = (page - 1) * limit
+    let totalButton = Math.ceil(totalData / limit)
     renderListPost(skip, limit)
+    $('.next').attr('onclick', `changePage(${page+1})`)
+    $('.prev').attr('onclick', `changePage(${page-1})`)
+    if(page === totalButton){
+        $('.next').attr('onclick', ``)
+    }
+    if(page === 0){
+        $('.prev').attr('onclick', ``)
+    }
 }
 
 function changeView(){
