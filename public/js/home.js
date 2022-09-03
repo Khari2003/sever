@@ -37,7 +37,7 @@ function addUser(){
 
 function renderListPost(skip,limit){
     $.ajax({
-        url:`/post?skip=${skip}&limit=${limit}`,
+        url:`/post/next?skip=${skip}&limit=${limit}`,
         type:'GET',
     }).then((data)=>{
         $('.listPost').html('')
@@ -56,9 +56,10 @@ function renderListPost(skip,limit){
 
 function renderListButton(total){
     $('.listButton').html('')
+    $('.next').attr('onclick', 'changePage(2)')
     for(let i=1; i<=total; i++) {
         $('.listButton').append(`
-            <button onclick="next(${i})">${i}</button>
+            <button onclick="changePage(${i})">${i}</button>
         `)
     }
 }
@@ -92,7 +93,7 @@ function save(){
     .catch((error) => {console.log(error)})
 }
 
-function next(page){
+function changePage(page){
     let limit = $('#limit').val();
     let skip = (page - 1) * limit
     renderListPost(skip, limit)

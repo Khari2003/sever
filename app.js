@@ -13,6 +13,9 @@ app.get('/home', (req,res)=>{
 app.get('/user/:id/changePass', (req,res)=>{
     res.sendFile(path.join(__dirname,'./changePass.html'))
 })
+app.get('/find', (req,res)=>{
+    res.sendFile(path.join(__dirname,'./find.html'))
+})
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
