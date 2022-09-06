@@ -4,7 +4,8 @@ mongoose.connect('mongodb://localhost/MiniProject');
 const UserSchema = mongoose.Schema({
     username:String,
     password:String,
-    list:[String]
+    list:[String],
+    token:String
 },{collection:'user'})
 
 const UserModel = mongoose.model('user', UserSchema)
