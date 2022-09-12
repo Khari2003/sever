@@ -33,6 +33,7 @@ function addUser(){
     }).catch((err)=>{
         console.log(err);
     })
+    location.reload();
 }
 
 function renderListPost(skip,limit){

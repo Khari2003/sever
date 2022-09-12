@@ -4,8 +4,6 @@ var cookieParser = require('cookie-parser')
 const UserRouter = require('./router/userRouter')
 const PostRouter = require('./router/postRouter')
 const checkLogin = require('./public/js/checkLogin')
-const UserModel = require('./models/userModel')
-const { request } = require('http');
 
 const app = express()
 app.use(express.json())

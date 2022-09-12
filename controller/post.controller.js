@@ -1,73 +1,76 @@
 const PostModel = require('../models/postModel')
 const UserModel = require('../models/userModel')
 
-module.exports.getIndex = (req, res) => {
-    PostModel.find(
-        req.query
-    )
-    .then((data)=>{
+module.exports.getIndex = async function (req, res) {
+    try {
+        const data = await PostModel.find(
+            req.query
+        )
         res.json(data)
-    }).catch((err)=>{
-        res.json(err)
-    })
+    } catch (error) {
+        console.log(error)
+    }
 }
-module.exports.getUser = (req,res)=>{
-    console.log(req.query)
-    UserModel.findOne({username: req.query.username})
-    .then((data)=>{
-        return PostModel.find({
-            author: data._id
-        }).then((data)=>{res.json(data)})
-        .catch((err)=>{res.json(err)})
-    })
-    .catch((err)=>{res.json(err)})
+module.exports.getUser = async function (req,res){
+    try {
+        const data = await UserModel.findOne({username: req.query.username})
+        if(data){
+            const user = await PostModel.find({author: data._id})
+            res.json(user)
+        }
+    } catch (error) {
+        console.log(error)
+    }
 }
-module.exports.getNext = (req,res)=>{
-    PostModel.find(
-        req.query
-    )
-    .skip(req.query.skip)
-    .limit(req.query.limit)
-    .then((data)=>{
+module.exports.getNext = async function (req,res){
+    try {
+        const data = await PostModel.find(
+            req.query
+        )
+        .skip(req.query.skip)
+        .limit(req.query.limit)
         res.json(data)
-    }).catch((err)=>{
-        res.json(err)
-    })
+    } catch (error) {
+        console.log(error)
+    }
 }
-module.exports.getID = (req,res)=>{
-    PostModel.findOne({
-        _id:req.params.id
-    }).then((data)=>{
+module.exports.getID = async function (req,res){
+    try {
+        const data = await PostModel.findOne({
+            _id:req.params.id
+        })
         res.json(data)
-    }).catch((err)=>{
-        res.json(err)
-    })
+    } catch (error) {
+        console.log(error)
+    }
 }
-module.exports.postIndex = (req,res)=>{
-    PostModel.create({
-        title:req.body.title,
-        content:req.body.content,
-        author:req.body.author
-    }).then((data)=>{
+module.exports.postIndex = async function (req,res){
+    try {
+        const data = await PostModel.create({
+            title:req.body.title,
+            content:req.body.content,
+            author:req.body.author
+        })
         res.json(data)
-    }).catch((err)=>{
-        res.json(err)
-    })
+    } catch (error) {
+        console.log(error)
+    }
 }
-module.exports.deleteID = (req,res)=>{
-    PostModel.deleteOne({
-        _id:req.params.id
-    }).then((data)=>{
+module.exports.deleteID = async function (req,res){
+    try {
+        const data = await PostModel.deleteOne({
+            _id:req.params.id
+        })
         res.json(data)
-    }).catch((err)=>{
-        res.json(err)
-    })
+    } catch (error) {
+        console.log(error)
+    }
 }
-module.exports.putID =  (req,res)=>{
-    PostModel.updateOne({_id:req.params.id},req.body)
-    .then((data)=>{
+module.exports.putID = async function (req,res){
+    try {
+        const data = await PostModel.updateOne({_id:req.params.id},req.body)
         res.json(data)
-    }).catch((err)=>{
-        res.json(err)
-    })
+    } catch (error) {
+        console.log(error)
+    }
 }
