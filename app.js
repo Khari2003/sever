@@ -11,6 +11,10 @@ app.use(cookieParser())
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
+app.get('/signup',(req,res)=>{
+    res.sendFile(path.join(__dirname, './signup.html'))
+})
+
 app.get('/home',checkLogin,(req,res)=>{
     // res.cookie('test','khai',{ expires:new Date(Date.now()+9000)})
     // console.log(req.cookies)

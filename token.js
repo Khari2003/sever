@@ -9,25 +9,35 @@
 // const data = jwt.verify(string,pass)
 // console.log(data)
 
-let p1 = new Promise((res,rej)=>{
-    let a = 0
-    if(a){
-        res(123)
-    }else{
-        rej("failed to verify")
-    }
-})
-// p1.then((res)=>{
-//     console.log(res)
+// let p1 = new Promise((res,rej)=>{
+//     let a = 0
+//     if(a){
+//         res(123)
+//     }else{
+//         rej("failed to verify")
+//     }
 // })
+// // p1.then((res)=>{
+// //     console.log(res)
+// // })
 
-async function test(){
-    try {
-        let data = await p1
-        console.log(data)
-    } catch (err) {
-        console.log(err)
-    }
-}
+// async function test(){
+//     try {
+//         let data = await p1
+//         console.log(data)
+//     } catch (err) {
+//         console.log(err)
+//     }
+// }
 
-test()
+// test()
+
+let bcrypt = require('bcrypt')
+
+// bcrypt.hash('khai123',10)
+// .then((data)=>{console.log(data)})
+// .catch((err)=>{console.log(err)})
+
+bcrypt.compare('khai123','$2b$10$ZkaJGH7SRG/jJWkhG5yBIet0zylfNZX/8SeDiVts2c2.11HPbcbpK')
+.then((data)=>{console.log(data)})
+.catch((err)=>{console.log(err)})
