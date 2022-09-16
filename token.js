@@ -34,9 +34,9 @@
 
 let bcrypt = require('bcrypt')
 
-// bcrypt.hash('khai123',10)
-// .then((data)=>{console.log(data)})
-// .catch((err)=>{console.log(err)})
+bcrypt.hash('khai2003',10)
+.then((data)=>{console.log(data)})
+.catch((err)=>{console.log(err)})
 
 bcrypt.compare('khai123','$2b$10$ZkaJGH7SRG/jJWkhG5yBIet0zylfNZX/8SeDiVts2c2.11HPbcbpK')
 .then((data)=>{console.log(data)})
