@@ -6,6 +6,7 @@ const ProductSchema = mongoose.Schema({
     name: String,
     price: Number,
     amount: Number,
+    color:String,
 },{collection: 'product'})
 
 const ProductModel = mongoose.model('product',ProductSchema)

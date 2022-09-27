@@ -1,6 +1,6 @@
 const ProductModel = require('../models/productModel')
 
-module.exports.getIndex = async function (req, res){
+module.exports.getFind = async function (req, res){
     try {
 
         if (req.query.high || req.query.low) {
@@ -23,3 +23,12 @@ module.exports.getIndex = async function (req, res){
         res.json(error)
     }
 } 
+module.exports.getFindColor = async function (req, res){
+    try {
+        const colorArr = req.query.color.split(',')
+        const data = await ProductModel.find({color:{$in: colorArr}})
+        res.json(data)
+    } catch (error) {
+        console.log(error)
+    }
+}

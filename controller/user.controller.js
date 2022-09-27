@@ -82,3 +82,14 @@ module.exports.postLogin = async function (req, res){
         console.log(error)
     }
 }
+module.exports.putAvatar = async function(req, res,next) {
+   try {
+    console.log(req.files)
+    // await UserModel.updateOne({_id:req.params.id},{
+    //     avatar:'/'+ req.file.path
+    // })
+    res.json('done')
+   } catch (error) {
+    console.log(error)
+   }
+}

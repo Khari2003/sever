@@ -8,6 +8,7 @@ function checkLogin(req, res,next){
         UserModel.findOne({_id: id,token:cookie})
         .then((data)=>{
             if(data){
+                req.role = data.role
                 next()
             }else{
                 res.redirect('/login')
